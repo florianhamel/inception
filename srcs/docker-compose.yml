@@ -1,0 +1,62 @@
+version: "3.8"
+
+networks:
+  front_nw:
+  db_nw:
+
+volumes:
+  db_vol:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: bind
+      device: "/Users/nerium/Documents/programming/42/inception/volumes/db_dir"
+
+  wp_vol:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: bind
+      device: "/Users/nerium/Documents/programming/42/inception/volumes/wordpress"
+
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    networks:
+      - db_nw
+    volumes:
+      - db_vol:/var/lib/mysql
+    env_file:
+      - .env
+    expose:
+      - "3306"
+    restart: always
+
+  wordpress:
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress
+    networks:
+      - front_nw
+      - db_nw
+    volumes:
+      - wp_vol:/var/www/html/wordpress
+    env_file:
+      - .env
+    expose:
+      - "9000"
+    restart: always
+
+  nginx:
+    depends_on:
+      - wordpress
+    build: ./requirements/nginx
+    networks:
+      - front_nw
+    volumes:
+      - wp_vol:/var/www/html/wordpress
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    restart: always

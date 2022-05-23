@@ -1,0 +1,17 @@
+--- PERSO ---
+-> remove <none> images
+docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)
+
+-> ports: expose is for internal communication != publish is for global communication
+
+--- TO DO ---
+Makefile -> install docker-compose
+Makefile -> change local domain inside the VM to login.42.fr (echo "fhamel.42.fr" >> /etc/hosts)
+
+--- CORRECTION ---
+-> check TLSv1.2
+
+openssl s_client -connect localhost:443 -tls1_2
+
+wget https://fr.wordpress.org/wordpress-5.9.3-fr_FR.tar.gz
+tar -xzvf wordpress-5.9.3-fr_FR.tar.gz
