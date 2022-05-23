@@ -10,14 +10,14 @@ volumes:
     driver_opts:
       type: "none"
       o: bind
-      device: "/Users/nerium/Documents/programming/42/inception/volumes/db_dir"
+      device: "/home/fhamel/data/mariadb"
 
   wp_vol:
     driver: local
     driver_opts:
       type: "none"
       o: bind
-      device: "/Users/nerium/Documents/programming/42/inception/volumes/wordpress"
+      device: "/home/fhamel/data/wordpress"
 
 services:
   mariadb:
