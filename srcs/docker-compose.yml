@@ -10,14 +10,14 @@ volumes:
     driver_opts:
       type: "none"
       o: bind
-      device: "/home/fhamel/data/mariadb"
+      device: "/mnt/nfs/homes/fhamel/Documents/42/inception/inception_gh/volumes/mariadb"
 
   wp_vol:
     driver: local
     driver_opts:
       type: "none"
       o: bind
-      device: "/home/fhamel/data/wordpress"
+      device: "/mnt/nfs/homes/fhamel/Documents/42/inception/inception_gh/volumes/wordpress"
 
 services:
   mariadb:

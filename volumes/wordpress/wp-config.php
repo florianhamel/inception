@@ -28,7 +28,7 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'fhamel' );
 
 /** Mot de passe de la base de données MySQL. */
-define( 'DB_PASSWORD', 'dbpwd' );
+define( 'DB_PASSWORD', 'pwd' );
 
 /** Adresse de l’hébergement MySQL. */
 define( 'DB_HOST', 'mariadb:3306' );
