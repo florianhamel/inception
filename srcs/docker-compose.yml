@@ -10,17 +10,18 @@ volumes:
     driver_opts:
       type: "none"
       o: bind
-      device: "/mnt/nfs/homes/fhamel/Documents/42/inception/inception_gh/volumes/mariadb"
+      device: "/Users/nerium/documents/programming/42/inception/inception_gh/volumes/mariadb"
 
   wp_vol:
     driver: local
     driver_opts:
       type: "none"
       o: bind
-      device: "/mnt/nfs/homes/fhamel/Documents/42/inception/inception_gh/volumes/wordpress"
+      device: "/Users/nerium/documents/programming/42/inception/inception_gh/volumes/wordpress"
 
 services:
   mariadb:
+    container_name: mariadb_container
     build: ./requirements/mariadb
     networks:
       - db_nw
@@ -33,6 +34,7 @@ services:
     restart: always
 
   wordpress:
+    container_name: wordpress_container
     depends_on:
       - mariadb
     build: ./requirements/wordpress
@@ -48,6 +50,7 @@ services:
     restart: always
 
   nginx:
+    container_name: nginx_container
     depends_on:
       - wordpress
     build: ./requirements/nginx
